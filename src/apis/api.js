@@ -1,5 +1,5 @@
 // 配置API接口地址
-var root = 'https://cnodejs.org/api/v1';
+var root = 'https://cnodejs.org/api/v1/';
 // 引用superagent
 //var request = require('superagent');
 var axios = require('axios');
@@ -32,7 +32,7 @@ function filterNull(o) {
 // function _api_base(method, url, params, success, failure) {
 //   var r = request(method, url).type('text/plain')
 //   if (params) {
-//     params = filter_null(params);
+//     params = filterNull(params);
 //     if (method === 'POST' || method === 'PUT') {
 //       if (toType(params) == 'object') {
 //         params = JSON.stringify(params);
@@ -98,15 +98,15 @@ function apiAxios(method, url, params, success, failure) {
 // 返回在vue模板中的调用接口
 export default {
   get: function(url, params, success, failure) {
-    return apiAxios('GET', url, params, success, failure)
+    return apiAxios('GET', root + url, params, success, failure)
   },
   post: function(url, params, success, failure) {
-    return apiAxios('POST', url, params, success, failure)
+    return apiAxios('POST', root + url, params, success, failure)
   },
   put: function(url, params, success, failure) {
-    return apiAxios('PUT', url, params, success, failure)
+    return apiAxios('PUT', root + url, params, success, failure)
   },
   delete: function(url, params, success, failure) {
-    return apiAxios('DELETE', url, params, success, failure)
+    return apiAxios('DELETE', root + url, params, success, failure)
   },
 }
