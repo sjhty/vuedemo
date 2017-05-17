@@ -10,13 +10,21 @@
 export default {
     data() {
         return {
-            lists:[{
-                id:1,
-                title:"test title 1"
-            },{
-                id:2,
-                title:"test title 2"
-            }]
+            lists:[]
+        }
+    },
+    created() {
+        this.getData()
+    },
+    methods: {
+        getData:function(params) {
+            var _this = this;
+            if (!params) params = {}
+            _this.$api.get('topics',params,function(con){
+                debugger
+                console.log(con.data)
+                _this.lists = con.data
+            })
         }
     }
 }
