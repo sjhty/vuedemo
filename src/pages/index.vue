@@ -2,7 +2,7 @@
   <div>
     <h1 class="logo">cnodejs Api Test</h1>
     <ul class="list">
-      <li v-for="item in lists" v-text="item.pkgName"></li>
+      <li v-for="item in lists" v-text="item.title"></li>
     </ul>
   </div>
 </template>
@@ -14,12 +14,12 @@ export default {
         }
     },
     created() {
-        let params = {
-            rows: 10,
-            page: 1,
-            _tk: '63bd6eb7-5488-4a0e-b3d8-cdd31b83b071'
-        }
-        this.getPackageList(params)
+        // let params = {
+        //     rows: 10,
+        //     page: 1,
+        //     _tk: '63bd6eb7-5488-4a0e-b3d8-cdd31b83b071'
+        // }
+        this.getData()
     },
     methods: {
         getData:function(params) {

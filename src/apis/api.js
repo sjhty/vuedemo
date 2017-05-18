@@ -1,6 +1,6 @@
 // 配置API接口地址
-//var root = 'https://cnodejs.org/api/v1/';
-var root = 'http://crmapi-test.ucaiyuan.com/api/';
+var root = 'https://cnodejs.org/api/v1/';
+//var root = 'http://crmapi-test.ucaiyuan.com/api/';
 // 引用superagent
 //var request = require('superagent');
 var axios = require('axios');
@@ -63,7 +63,7 @@ function filterNull(o) {
 //   });
 // };
 function apiAxios(method, url, params, success, failure) {
-    debugger
+    //debugger
     if (params) {
         params = filterNull(params);
     } else {
@@ -78,26 +78,40 @@ function apiAxios(method, url, params, success, failure) {
         baseUrl: root,
         withCredentials: false
     })
+    // .then(function (res) {
+    //     if (res.data.type === 'success') {
+    //         if (success) {
+    //             success(res.data.content)
+    //         }
+    //     } else {
+    //         if (failure) {
+    //             failure(res.data)
+    //         } else {
+    //             alert('error: ' + JSON.stringify(res.data))
+    //         }
+    //     }
+    // })
     .then(function (res) {
-        if (res.data.type === 'success') {
+      debugger
+        if (res.data.success === true) {
             if (success) {
-                success(res.data.content)
+                success(res.data)
             }
         } else {
             if (failure) {
                 failure(res.data)
             } else {
-                alert('error: ' + JSON.stringify(res.data))
+                //alert('error: ' + JSON.stringify(res.data))
             }
         }
     })
-    // .catch(function (err) {
-    //     let res = err.response
-    //     if (err) {
-    //         alert('api error, HTTP CODE: ' + res.status)
-    //         return
-    //     }
-    // })
+    .catch(function (err) {
+        let res = err.response
+        if (err) {
+            alert('api error, HTTP CODE: ' + res.status)
+            return
+        }
+    })
 }
 // 返回在vue模板中的调用接口
 export default {
